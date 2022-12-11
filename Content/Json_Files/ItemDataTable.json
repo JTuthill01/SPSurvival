@@ -1,0 +1,21 @@
+{
+	"Wood" : {
+		"bIsStackable": true,
+		"bUsesAmmo": false,
+		"ItemID": 1,
+		"ItemQuanity": 0,
+		"ItemDamage": 0,
+		"ItemCurrentHP": 800,
+		"ItemMaxHP": 0,
+		"StackSize": 100,
+		"MaxAmmo": 0,
+		"CurrentAmmo": 0,
+		"ItemIcon": "Texture2D'/Game/CraftResourcesIcons/Textures/Tex_wood_10.Tex_wood_10'",
+		"ItemBaseRef": "None",
+		"ItemName": "Wood",
+		"ItemDescription": "A piece of wood, duh",
+		"ItemRarity": 0,
+		"ItemType": 4,
+		"ArmourType": 4
+	}
+}
