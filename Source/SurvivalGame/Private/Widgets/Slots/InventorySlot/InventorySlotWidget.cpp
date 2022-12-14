@@ -8,7 +8,7 @@
 #include "Components/ProgressBar.h"
 #include "Kismet/GameplayStatics.h"
 
-UInventorySlotWidget::UInventorySlotWidget(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer), FromContainer(EContainerType::ECT_Default), ItemIndex(0), bHasItemInSlot(false)
+UInventorySlotWidget::UInventorySlotWidget(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer), FromContainer(EContainerType::ECT_PlayerInventory), ItemIndex(0), bHasItemInSlot(false)
 {
 }
 
@@ -100,6 +100,8 @@ void UInventorySlotWidget::UpdateSlot(FItemData ItemInfo)
 {
 	bHasItemInSlot = true;
 
+	//GEngine->AddOnScreenDebugMessage(-1, 6.F, FColor::Emerald, ItemInfo.ItemName.ToString());
+
 	ItemIcon->SetBrushFromTexture(ItemInfo.ItemIcon);
 	ItemIcon->SetVisibility(ESlateVisibility::Visible);
 
@@ -107,7 +109,7 @@ void UInventorySlotWidget::UpdateSlot(FItemData ItemInfo)
 	DragData = ItemInfo;
 
 	FText P = FText::AsNumber(ItemInfo.ItemQuanity);
-	FText Q = FText::Format(LOCTEXT("Quanity", "x{Quanity}"), P);
+	FText Q = FText::Format(LOCTEXT("Quantity", "x{Quantity}"), P);
 
 	QuanityText->SetText(Q);
 	QuanityText->SetVisibility(ESlateVisibility::Visible);

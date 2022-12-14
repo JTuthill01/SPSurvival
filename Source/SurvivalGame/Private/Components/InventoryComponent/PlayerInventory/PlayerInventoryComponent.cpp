@@ -2,7 +2,10 @@
 #include "Character/Controller/PlayerCharacterController.h"
 #include "Kismet/GameplayStatics.h"
 
-UPlayerInventoryComponent::UPlayerInventoryComponent() = default;
+UPlayerInventoryComponent::UPlayerInventoryComponent()
+{
+	ContainerType = EContainerType::ECT_PlayerInventory;
+}
 
 void UPlayerInventoryComponent::BeginPlay()
 {
@@ -16,12 +19,12 @@ void UPlayerInventoryComponent::AddItems(FItemData Item, bool& bWasSuccessful)
 
 void UPlayerInventoryComponent::TransferItem(TObjectPtr<UItemsContainer> ToComponent, int32 ToSpecificIndex, int32 TransferIndex)
 {
-	Super::TransferItem(ToComponent, ToSpecificIndex, TransferIndex);
+	Super::TransferItem(this, ToSpecificIndex, TransferIndex);
 }
 
 void UPlayerInventoryComponent::HandleSlotDrop(TObjectPtr<UItemsContainer> FromComponent, int32 FromIndex, int32 DroppedIndex)
 {
-	Super::HandleSlotDrop(FromComponent, FromIndex, DroppedIndex);
+	Super::HandleSlotDrop(this, FromIndex, DroppedIndex);
 
 	switch (ContainerType)
 	{
@@ -52,12 +55,17 @@ void UPlayerInventoryComponent::AddItemToIndex(FItemData Item, int32 SpecificInd
 {
 	Super::AddItemToIndex(Item, SpecificIndex, FromIndex, bWasSuccessful);
 
-	if (!IsValid(PC))
-		PC = Cast<APlayerCharacterController>(UGameplayStatics::GetPlayerController(GetWorld(), 0));
-
-	else if (IsValid(PC))
+	if (IsValid(PC))
+	{
 		PC->UpdateItemSlot(ContainerType, SpecificIndex, GetItemIndex(SpecificIndex));
 
+		bWasSuccessful = true;
+	}
+
 	else
+	{
+		bWasSuccessful = false;
+
 		return;
+	}
 }

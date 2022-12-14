@@ -100,29 +100,7 @@ void APlayerCharacter::OnSlotDrop(EContainerType TargetContainer, EContainerType
 {
 	//TargetContainer = PlayerInventoryComponent->GetContainerType();
 
-	switch (TargetContainer)
-	{
-	case EContainerType::ECT_PlayerInventory:
-
-		PlayerInventoryComponent->OnSlotDrop(PlayerInventoryComponent, FromIndex, DroppedIndex);
-
-		break;
-
-	case EContainerType::ECT_PlayerHotbar:
-		break;
-
-	case EContainerType::ECT_PlayerStorage:
-		break;
-
-	case EContainerType::ECT_PlayerArmour:
-		break;
-
-	case EContainerType::ECT_Default:
-		break;
-
-	default:
-		break;
-	}
+	PlayerInventoryComponent->OnSlotDrop(PlayerInventoryComponent, FromIndex, DroppedIndex);
 }
 
 APlayerCharacter* APlayerCharacter::GetPlayerRef_Implementation() { return this; }

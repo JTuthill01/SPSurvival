@@ -35,8 +35,11 @@ void UItemsContainer::FindEmptySlot(bool& bIsSuccessful, int32& EmptyIndex)
 
 			bIsSuccessful = true;
 
-			break;
+			return;
 		}
+
+		else 
+			continue;
 	}
 }
 
@@ -82,6 +85,8 @@ void UItemsContainer::UpdateUI(int32 Index, FItemData ItemInfo, bool bShouldRese
 
 			PC->UpdateItemSlot(ContainerType, Index, ItemInfo);
 
+			//GEngine->AddOnScreenDebugMessage(-1, 6.F, FColor::FromHex("#FDBD01"), ItemInfo.ItemName.ToString());
+
 			break;
 
 		case EContainerType::ECT_PlayerHotbar:
@@ -123,7 +128,7 @@ FItemData UItemsContainer::GetItemIndex(int32 CurrentIndex)
 {
 	if (ItemsArray.IsValidIndex(CurrentIndex))
 		return ItemsArray[CurrentIndex];
-
+	
 	return FItemData();
 }
 

@@ -4,7 +4,7 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "Components/UniformGridSlot.h"
 
-UItemContainerGridWidget::UItemContainerGridWidget(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer), SlotsPerRow(5), TotalSlotsPerRow(30)
+UItemContainerGridWidget::UItemContainerGridWidget(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer), SlotsPerRow(5), TotalSlotsPerRow(30), ContainerType(EContainerType::ECT_PlayerInventory)
 {
 }
 
