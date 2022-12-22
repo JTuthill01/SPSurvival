@@ -85,8 +85,6 @@ void UItemsContainer::UpdateUI(int32 Index, FItemData ItemInfo, bool bShouldRese
 
 			PC->UpdateItemSlot(ContainerType, Index, ItemInfo);
 
-			//GEngine->AddOnScreenDebugMessage(-1, 6.F, FColor::FromHex("#FDBD01"), ItemInfo.ItemName.ToString());
-
 			break;
 
 		case EContainerType::ECT_PlayerHotbar:
